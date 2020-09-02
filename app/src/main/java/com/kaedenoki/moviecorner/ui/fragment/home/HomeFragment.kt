@@ -1,15 +1,14 @@
 package com.kaedenoki.moviecorner.ui.fragment.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
 import com.kaedenoki.moviecorner.R
@@ -24,8 +23,8 @@ import com.kaedenoki.moviecorner.ui.adapter.series.RecyclerHomeSeriesAdapter
 
 class HomeFragment : Fragment() {
 
-    lateinit var binding : FragmentHomeBinding
-    lateinit var homeAdapter : RecyclerHomeContract
+    lateinit var binding: FragmentHomeBinding
+    lateinit var homeAdapter: RecyclerHomeContract
     private val homeViewModel: HomeViewModel by activityViewModels()
     private lateinit var skeleton: Skeleton
     override fun onCreateView(
@@ -45,16 +44,21 @@ class HomeFragment : Fragment() {
             setData(it)
         })
         homeViewModel.loading().observe(viewLifecycleOwner, Observer {
-            if(it){
+            if (it) {
                 skeleton.showSkeleton()
-            }else {
+            } else {
                 skeleton.showOriginal()
             }
         })
     }
 
     private fun initSkeleton() {
-        skeleton = binding.rvHome.applySkeleton(R.layout.skeleton_home_series,1)
+        val mode = HawkStore.getMode(requireContext())
+        skeleton = if (mode == MODE_SERIES) {
+            binding.rvHome.applySkeleton(R.layout.skeleton_home_series, 1)
+        } else {
+            binding.rvHome.applySkeleton(R.layout.skeleton_home_anime, 1)
+        }
         skeleton.showShimmer = true
         skeleton.maskColor = ContextCompat.getColor(requireContext(), R.color.maskColor)
         skeleton.shimmerColor = ContextCompat.getColor(requireContext(), R.color.shimmerColor)
@@ -71,8 +75,8 @@ class HomeFragment : Fragment() {
 
     private fun initRecylerView() {
         val mode = HawkStore.getMode(requireContext())
-        if(mode == MODE_SERIES){
-            binding.apply{
+        if (mode == MODE_SERIES) {
+            binding.apply {
                 homeAdapter =
                     RecyclerHomeSeriesAdapter(
                         requireActivity()
@@ -80,8 +84,8 @@ class HomeFragment : Fragment() {
                 rvHome.adapter = homeAdapter as RecyclerHomeSeriesAdapter
                 rvHome.layoutManager = LinearLayoutManager(requireContext())
             }
-        } else if(mode == MODE_ANIME){
-            binding.apply{
+        } else if (mode == MODE_ANIME) {
+            binding.apply {
                 homeAdapter =
                     RecyclerHomeAnimeAdapter(
                         requireActivity()

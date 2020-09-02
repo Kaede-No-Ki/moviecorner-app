@@ -9,7 +9,7 @@ import com.jama.carouselview.enums.IndicatorAnimationType
 import com.jama.carouselview.enums.OffsetType
 import com.kaedenoki.moviecorner.R
 import com.kaedenoki.moviecorner.data.anime.model.ItemAnime
-import com.kaedenoki.moviecorner.databinding.ItemBannerSeriesBinding
+import com.kaedenoki.moviecorner.databinding.ItemBannerAnimeBinding
 import com.kaedenoki.moviecorner.databinding.ViewholderCarouselBinding
 
 class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -29,7 +29,7 @@ class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 indicatorAnimationType = IndicatorAnimationType.THIN_WORM
                 carouselOffset = OffsetType.START
                 setCarouselViewListener { view, position ->
-                    val binding = ItemBannerSeriesBinding.bind(view)
+                    val binding = ItemBannerAnimeBinding.bind(view)
                     val itemData = data[position] as ItemAnime
                     binding.apply {
                         ivItemBanner.load(itemData.thumb)
