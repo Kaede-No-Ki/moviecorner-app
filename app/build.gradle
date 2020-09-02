@@ -22,6 +22,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        // "-Xjvm-default=all-compatibility" will also work.
+        freeCompilerArgs = ["-Xjvm-default=enable"]
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -30,6 +47,33 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.3.1'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+
+    // material design
+    implementation 'com.google.android.material:material:1.2.0'
+
+    // coil
+    implementation "io.coil-kt:coil:0.12.0"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // carousle view
+    implementation 'com.github.jama5262:CarouselView:1.1.0'
+
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // ktx artifact
+    implementation "androidx.core:core-ktx:1.3.1"
+    implementation "androidx.activity:activity-ktx:1.1.0"
+    implementation "androidx.fragment:fragment-ktx:1.2.5"
+
+    // android lifecycle
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.2.0"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    // hawk
+    implementation "com.orhanobut:hawk:2.0.1"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
