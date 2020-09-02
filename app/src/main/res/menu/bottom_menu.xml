@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menuHome"
+        android:icon="@drawable/ic_outline_home_24"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/menuMyList"
+        android:icon="@drawable/ic_outline_bookmark_border_24"
+        android:title="@string/my_list" />
+    <item
+        android:id="@+id/menuBrowse"
+        android:icon="@drawable/ic_baseline_view_module_24"
+        android:title="Browse" />
+    <item
+        android:id="@+id/menuDownload"
+        android:icon="@drawable/ic_baseline_arrow_downward_24"
+        android:title="Down" />
+    <item
+        android:id="@+id/menuSetting"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="Setting" />
+
+</menu>

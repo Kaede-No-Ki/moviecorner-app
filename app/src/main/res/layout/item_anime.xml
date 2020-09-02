@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    android:id="@+id/cardSeries"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="@color/colorPrimary">
+
+    <RelativeLayout
+        android:layout_width="118dp"
+        android:layout_height="156dp">
+        <ImageView
+            android:id="@+id/ivItemCard"
+            android:layout_width="118dp"
+            android:layout_height="82dp"
+            android:scaleType="centerCrop"
+            android:background="@android:color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <LinearLayout
+            android:layout_below="@id/ivItemCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="4dp">
+            <TextView
+                android:id="@+id/tvItemTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Its Okay to Not be Okay"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textAlignment="textStart"
+                android:fontFamily="@font/regular"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:textColor="@android:color/white" />
+            <TextView
+                android:id="@+id/tvItemSubtitle1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Its Okay to Not be Okay"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textAlignment="textStart"
+                android:fontFamily="@font/regular"
+                android:layout_marginBottom="4dp"
+                android:textSize="12sp"
+                android:textColor="@color/colorSubtitle1" />
+            <TextView
+                android:id="@+id/tvItemSubtitle2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Its Okay to Not be Okay"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textAlignment="textStart"
+                android:fontFamily="@font/regular"
+                android:layout_marginBottom="4dp"
+                android:textSize="12sp"
+                android:textColor="@color/colorSubtitle1" />
+        </LinearLayout>
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

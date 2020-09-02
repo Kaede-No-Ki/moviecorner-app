@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    android:id="@+id/cardSeries"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="118dp"
+        android:layout_height="156dp">
+        <ImageView
+            android:id="@+id/ivItemCard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvItemTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Its Okay to Not be Okay"
+            android:layout_alignParentBottom="true"
+            android:textAlignment="center"
+            android:fontFamily="@font/regular"
+            android:textColor="@android:color/white"
+            android:padding="8dp"
+            android:background="@drawable/bg_title_item_series" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            app:cardCornerRadius="2dp"
+            app:contentPadding="2dp"
+            app:cardBackgroundColor="#E2A405">
+            <TextView
+                android:id="@+id/tvItemQuality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HD"
+                android:textAlignment="center"
+                android:textSize="10sp"
+                android:fontFamily="@font/regular"
+                android:textColor="@android:color/white"
+
+                 />
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

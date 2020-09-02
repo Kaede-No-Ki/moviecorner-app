@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/bgBlack"
+    tools:context=".ui.fragment.home.HomeFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize">
+        <ImageView
+            android:layout_width="148dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_logo"
+            android:layout_margin="16dp"
+            app:tint="@color/colorPrimary"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_search_24"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="16dp"
+            app:tint="@android:color/white" />
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvHome"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:clipToPadding="false"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
+
+</LinearLayout>

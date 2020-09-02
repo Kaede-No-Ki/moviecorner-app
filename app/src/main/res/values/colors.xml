@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorPrimary">#5849A4</color>
+    <color name="colorPrimaryDark">#121212</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="bgBlack">#121212</color>
+    <color name="activeIndicatorBanner">#E0E0E0</color>
+    <color name="inactiveIndicatorBanner">#676767</color>
+    <color name="colorSubtitle1">#BCB6DB</color>
 </resources>
