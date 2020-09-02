@@ -15,9 +15,14 @@ class HomeViewModel : ViewModel() {
     private val home = MutableLiveData<Home>().apply {
         value = Home()
     }
+    private val isLoading = MutableLiveData<Boolean>().apply {
+        value = true
+    }
 
     fun getHomeSeries() {
+        isLoading.value = true
         SeriesServices().getHome {
+
             val mostViewed = it.data!!.mostViewed
             val newSeries = it.data.newSeries
             val boxOffice = it.data.boxOffice
@@ -54,12 +59,15 @@ class HomeViewModel : ViewModel() {
                     )
                 )
             )
+            isLoading.value = false
             this.home.value = home
         }
     }
 
     fun getHomeAnime() {
+        isLoading.value = true
         AnimeServices().getHome {
+            this.isLoading.value = false
             val onGoing = it.home?.onGoing
             val complete = it.home?.complete
 
@@ -77,5 +85,9 @@ class HomeViewModel : ViewModel() {
 
     fun home(): LiveData<Home> {
         return home
+    }
+
+    fun loading(): LiveData<Boolean>{
+        return isLoading
     }
 }

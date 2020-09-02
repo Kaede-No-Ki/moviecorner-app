@@ -7,4 +7,6 @@
     <color name="activeIndicatorBanner">#E0E0E0</color>
     <color name="inactiveIndicatorBanner">#676767</color>
     <color name="colorSubtitle1">#BCB6DB</color>
+    <color name="shimmerColor">#5BFFFFFF</color>
+    <color name="maskColor">#5B8F8F8F</color>
 </resources>

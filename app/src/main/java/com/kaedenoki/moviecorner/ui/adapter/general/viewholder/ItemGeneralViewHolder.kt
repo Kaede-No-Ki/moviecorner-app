@@ -22,7 +22,7 @@ class ItemGeneralViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
             }else {
                 RecyclerItemAnime(data)
             }
-            rvItemData.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, true)
+            rvItemData.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
             rvItemData.adapter = adapter
         }
     }

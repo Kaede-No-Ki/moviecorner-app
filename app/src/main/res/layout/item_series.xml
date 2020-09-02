@@ -30,7 +30,10 @@
             android:textAlignment="center"
             android:fontFamily="@font/regular"
             android:textColor="@android:color/white"
-            android:padding="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="32dp"
             android:background="@drawable/bg_title_item_series" />
 
         <com.google.android.material.card.MaterialCardView

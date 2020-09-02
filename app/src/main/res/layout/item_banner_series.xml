@@ -18,8 +18,24 @@
             android:id="@+id/ivItemBanner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
+            android:background="@android:color/white"
             android:scaleType="centerCrop" />
+        <TextView
+            android:id="@+id/tvItemTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Its Okay to Not be Okay"
+            android:layout_alignParentBottom="true"
+            android:textAlignment="center"
+            android:fontFamily="@font/bold"
+            android:textColor="@android:color/white"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textSize="16sp"
+            android:paddingBottom="8dp"
+            android:paddingTop="32dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@drawable/bg_title_item_series" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

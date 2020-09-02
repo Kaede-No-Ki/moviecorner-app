@@ -38,6 +38,7 @@ class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                     binding.apply {
                         cvItemBanner.layoutParams.width = width - 128
                         ivItemBanner.load(itemData.banner)
+                        tvItemTitle.text = itemData.title
                     }
                 }
                 show()
