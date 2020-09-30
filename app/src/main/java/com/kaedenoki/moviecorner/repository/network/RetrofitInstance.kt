@@ -8,12 +8,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
     private val baseSeries: Retrofit = Retrofit.Builder()
-        .baseUrl("https://drakor-corner.azurewebsites.net/")
+        .baseUrl("https://movie.kaedenoki.net/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
     private val baseAnime: Retrofit = Retrofit.Builder()
-        .baseUrl("https://anime-corner.azurewebsites.net/")
+        .baseUrl("https://anime.kaedenoki.net/api/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
