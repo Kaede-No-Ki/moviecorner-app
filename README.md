@@ -13,7 +13,7 @@
 
 | Home Anime | Home Movie|
 |--|--|
-| <img src="assets/anime.gif"> | <img src="assets/movie.gif"> |
+| <img src="assets/anime.gif"> | <img src="assets/movie.gif" width="278"> |
 
 ## Features
 -  Choose Mode
