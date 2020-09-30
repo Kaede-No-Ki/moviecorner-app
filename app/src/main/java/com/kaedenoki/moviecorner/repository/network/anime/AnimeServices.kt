@@ -1,6 +1,7 @@
 package com.kaedenoki.moviecorner.repository.network.anime
 
 import android.util.Log
+import com.kaedenoki.moviecorner.data.anime.response.BaseAnimeResponse
 import com.kaedenoki.moviecorner.data.anime.response.HomeAnimeResponse
 import com.kaedenoki.moviecorner.repository.network.RetrofitInstance
 import retrofit2.Call
@@ -13,7 +14,7 @@ class AnimeServices {
         RetrofitInstance.getAnimeClient().getHome().enqueue(
             object : Callback<HomeAnimeResponse> {
                 override fun onFailure(call: Call<HomeAnimeResponse>, t: Throwable) {
-
+                    Log.d("TAG", "onFailure: ${t.message}")
                 }
 
                 override fun onResponse(
@@ -26,4 +27,24 @@ class AnimeServices {
             }
         )
     }
+
+    fun getComplete(page: Int?, callback: (BaseAnimeResponse) -> Unit) {
+
+        RetrofitInstance.getAnimeClient().getCompleteAnime(page ?: 1).enqueue(
+            object : Callback<BaseAnimeResponse> {
+                override fun onResponse(
+                    call: Call<BaseAnimeResponse>,
+                    response: Response<BaseAnimeResponse>
+                ) {
+                    Log.d("TAG", "onResponse: ${response.body()}")
+                    callback(response.body()!!)
+                }
+
+                override fun onFailure(call: Call<BaseAnimeResponse>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
+
 }

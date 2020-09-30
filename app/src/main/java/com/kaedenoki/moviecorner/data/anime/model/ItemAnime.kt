@@ -17,5 +17,7 @@ data class ItemAnime(
     @SerializedName("title")
     val title: String? = null,
     @SerializedName("uploaded_on")
-    val uploadedOn: String? = null
+    val uploadedOn: String? = null,
+    @SerializedName("score")
+    val score : Float? = null
 )

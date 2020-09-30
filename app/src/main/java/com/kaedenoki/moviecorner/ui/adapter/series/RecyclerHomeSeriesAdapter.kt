@@ -52,7 +52,7 @@ class RecyclerHomeSeriesAdapter(val activity: Activity) : RecyclerView.Adapter<R
                 (holder as BannerViewHolder).bindView(activity, data.list?.get(position)?.data as List<Any>)
             }
             ITEM_DATA -> {
-                (holder as ItemGeneralViewHolder).bindView(activity, data.list?.get(position)?.data as List<Any>)
+                (holder as ItemGeneralViewHolder).bindView(activity, data.list?.get(position)?.data as List<Any>, 1)
             }
             else -> {
                 (holder as TitleViewHolder).bindView(activity, data.list?.get(position)?.data as String)

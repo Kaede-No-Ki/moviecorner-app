@@ -1,7 +1,7 @@
 package com.kaedenoki.moviecorner.data.general
 
 data class Home(
-    val list: List<ItemHome>? = listOf()
+    val list: List<ItemHome>? = mutableListOf()
 )
 
 data class ItemHome(

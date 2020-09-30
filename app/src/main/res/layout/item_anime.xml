@@ -1,70 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    android:id="@+id/cardSeries"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:id="@+id/cardSeries"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardBackgroundColor="@android:color/transparent"
     app:cardCornerRadius="10dp"
-    app:cardUseCompatPadding="true"
-    app:cardBackgroundColor="@color/colorPrimary">
+    app:cardUseCompatPadding="true">
 
-    <RelativeLayout
-        android:layout_width="118dp"
-        android:layout_height="156dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/ivItemCard"
-            android:layout_width="118dp"
-            android:layout_height="82dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
             android:scaleType="centerCrop"
-            android:background="@android:color/white"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintCircleRadius="8dp"
+            app:layout_constraintDimensionRatio="1:1.4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_below="@id/ivItemCard"
+        <TextView
+            android:id="@+id/tvItemTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="4dp">
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:textStyle="bold"
+            android:fontFamily="@font/bold"
+            android:maxLines="1"
+            android:text="Its Okay to Not be Okay"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivItemCard" />
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:cardBackgroundColor="#E2A405"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
             <TextView
-                android:id="@+id/tvItemTitle"
-                android:layout_width="match_parent"
+                android:id="@+id/tvEpisode"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Its Okay to Not be Okay"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:textAlignment="textStart"
                 android:fontFamily="@font/regular"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:padding="4dp"
+                android:text="Episode 12"
                 android:textColor="@android:color/white" />
-            <TextView
-                android:id="@+id/tvItemSubtitle1"
-                android:layout_width="match_parent"
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/layoutScore"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvItemTitle">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Its Okay to Not be Okay"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:textAlignment="textStart"
-                android:fontFamily="@font/regular"
-                android:layout_marginBottom="4dp"
-                android:textSize="12sp"
-                android:textColor="@color/colorSubtitle1" />
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_star"
+                app:tint="#E2A405" />
+
             <TextView
-                android:id="@+id/tvItemSubtitle2"
-                android:layout_width="match_parent"
+                android:id="@+id/tvScore"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Its Okay to Not be Okay"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:textAlignment="textStart"
+                android:layout_weight="1"
                 android:fontFamily="@font/regular"
-                android:layout_marginBottom="4dp"
-                android:textSize="12sp"
-                android:textColor="@color/colorSubtitle1" />
+                android:text="4.7"
+                android:textColor="#E2A405" />
         </LinearLayout>
-    </RelativeLayout>
-</com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tvRelease"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Selasa . 29 Sep"
+            android:fontFamily="@font/regular"
+            android:textColor="@color/colorSubtitle1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutScore" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

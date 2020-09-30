@@ -13,27 +13,33 @@ import com.kaedenoki.moviecorner.ui.adapter.general.RecyclerHomeContract
 import com.kaedenoki.moviecorner.ui.adapter.general.viewholder.ItemGeneralViewHolder
 import com.kaedenoki.moviecorner.ui.adapter.general.viewholder.TitleViewHolder
 
-class RecyclerHomeAnimeAdapter(val activity: Activity) : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
+class RecyclerHomeAnimeAdapter(val activity: Activity) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>(),
     RecyclerHomeContract {
     var data = Home()
-    override fun setHomeData(home: Home){
+    var attempts = 0
+    override fun setHomeData(home: Home) {
         this.data = home
         notifyDataSetChanged()
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when(viewType){
+        return when (viewType) {
             ITEM_BANNER -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.viewholder_carousel, parent, false)
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.viewholder_carousel, parent, false)
                 BannerViewHolder(view)
             }
             ITEM_DATA -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.viewholder_itemgeneral, parent, false)
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.viewholder_itemgeneral, parent, false)
                 ItemGeneralViewHolder(
                     view
                 )
             }
             else -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_title, parent, false)
+                val view =
+                    LayoutInflater.from(parent.context).inflate(R.layout.item_title, parent, false)
                 TitleViewHolder(
                     view
                 )
@@ -41,23 +47,36 @@ class RecyclerHomeAnimeAdapter(val activity: Activity) : RecyclerView.Adapter<Re
         }
     }
 
-    override fun getItemCount(): Int =  data.list?.size?:0
+    override fun getItemCount(): Int = data.list?.size ?: 0
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(data.list?.get(position)?.type){
+        when (data.list?.get(position)?.type) {
             ITEM_BANNER -> {
-                (holder as BannerViewHolder).bindView(activity, data.list?.get(position)?.data as List<Any>)
+                if (attempts == 0) {
+                    attempts++
+                    (holder as BannerViewHolder).bindView(
+                        activity,
+                        data.list?.get(position)?.data as List<Any>
+                    )
+                }
             }
             ITEM_DATA -> {
-                (holder as ItemGeneralViewHolder).bindView(activity, data.list?.get(position)?.data as List<Any>)
+                (holder as ItemGeneralViewHolder).bindView(
+                    activity,
+                    data.list?.get(position)?.data as List<Any>,
+                    2
+                )
             }
             else -> {
-                (holder as TitleViewHolder).bindView(activity, data.list?.get(position)?.data as String)
+                (holder as TitleViewHolder).bindView(
+                    activity,
+                    data.list?.get(position)?.data as String
+                )
             }
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return data.list?.get(position)?.type?:0
+        return data.list?.get(position)?.type ?: 0
     }
 }

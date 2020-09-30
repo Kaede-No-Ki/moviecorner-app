@@ -5,13 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.kaedenoki.moviecorner.R
 import com.kaedenoki.moviecorner.data.anime.model.ItemAnime
-import com.kaedenoki.moviecorner.data.series.model.ItemSeries
 import com.kaedenoki.moviecorner.databinding.ItemAnimeBinding
-import com.kaedenoki.moviecorner.databinding.ItemSeriesBinding
+import com.kaedenoki.moviecorner.helper.Helpers.formatEpisode
+import com.kaedenoki.moviecorner.helper.Helpers.hideView
 
-class RecyclerItemAnime(val data: List<Any>) : RecyclerView.Adapter<RecyclerItemAnime.ViewHolder>() {
+class RecyclerItemAnime(val data: List<Any>) :
+    RecyclerView.Adapter<RecyclerItemAnime.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_anime, parent, false)
@@ -32,10 +34,28 @@ class RecyclerItemAnime(val data: List<Any>) : RecyclerView.Adapter<RecyclerItem
         private val binding = ItemAnimeBinding.bind(itemView)
         fun bindView(itemAnime: ItemAnime) {
             binding.apply {
-                ivItemCard.load(itemAnime.thumb)
+                ivItemCard.load(itemAnime.thumb) {
+                    crossfade(true)
+                    transformations(RoundedCornersTransformation(10f))
+                }
                 tvItemTitle.text = itemAnime.title
-                tvItemSubtitle1.text = itemAnime.episode
-                tvItemSubtitle2.text = itemAnime.dayUpdated
+
+                itemAnime.dayUpdated.let {
+                    tvRelease.text = buildString {
+                        if (it != null) append(itemAnime.dayUpdated).append(" • ")
+                        append(itemAnime.uploadedOn)
+                    }
+                }
+                itemAnime.score.let {
+                    val textEpisode = itemAnime.episode
+                    if (it != null) {
+                        tvEpisode.text = textEpisode!!.formatEpisode()
+                        tvScore.text = it.toString()
+                    } else {
+                        tvEpisode.text = textEpisode
+                        layoutScore.hideView()
+                    }
+                }
             }
         }
     }

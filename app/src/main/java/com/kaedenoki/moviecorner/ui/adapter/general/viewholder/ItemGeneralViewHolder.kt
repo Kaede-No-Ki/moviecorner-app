@@ -2,6 +2,7 @@ package com.kaedenoki.moviecorner.ui.adapter.general.viewholder
 
 import android.app.Activity
 import android.view.View
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kaedenoki.moviecorner.databinding.ViewholderItemgeneralBinding
@@ -14,7 +15,7 @@ class ItemGeneralViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
 
     private val binding = ViewholderItemgeneralBinding.bind(itemView)
 
-    fun bindView(activity: Activity, data: List<Any>) {
+    fun bindView(activity: Activity, data: List<Any>, type : Int) {
         binding.apply {
             val mode = HawkStore.getMode(activity)
             val adapter = if (mode == Const.MODE_SERIES) {
@@ -22,7 +23,10 @@ class ItemGeneralViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
             }else {
                 RecyclerItemAnime(data)
             }
-            rvItemData.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            val layoutType =
+                if (type == 1)  LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+                else GridLayoutManager(activity, 3)
+            rvItemData.layoutManager = layoutType
             rvItemData.adapter = adapter
         }
     }

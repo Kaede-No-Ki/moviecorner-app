@@ -14,4 +14,12 @@ class ExampleUnitTest {
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
+
+    @Test
+    fun formatEpisode(){
+        val episode = "13Episode"
+        val fix = episode.split("E")
+        val build = buildString { append(fix[0]).append(" E").append(fix[1]) }
+        println(build)
+    }
 }
