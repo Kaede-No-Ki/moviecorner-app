@@ -3,6 +3,7 @@ package com.kaedenoki.moviecorner.ui.fragment.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.kaedenoki.moviecorner.data.general.Home
 import com.kaedenoki.moviecorner.data.general.ItemHome
 import com.kaedenoki.moviecorner.helper.Const.ITEM_BANNER
@@ -10,6 +11,7 @@ import com.kaedenoki.moviecorner.helper.Const.ITEM_DATA
 import com.kaedenoki.moviecorner.helper.Const.ITEM_TITLE
 import com.kaedenoki.moviecorner.repository.network.anime.AnimeServices
 import com.kaedenoki.moviecorner.repository.network.series.SeriesServices
+import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
     private val home = MutableLiveData<Home>().apply {
@@ -19,7 +21,7 @@ class HomeViewModel : ViewModel() {
         value = true
     }
 
-    fun getHomeSeries() {
+    fun getHomeSeries() = viewModelScope.launch {
         isLoading.value = true
         SeriesServices().getHome {
 
@@ -27,7 +29,7 @@ class HomeViewModel : ViewModel() {
             val newSeries = it.data.newSeries
             val boxOffice = it.data.boxOffice
             val newMovies = it.data.newMovies
-            val home = Home(
+            val dataHome = Home(
                 listOf(
                     ItemHome(
                         ITEM_BANNER,
@@ -60,25 +62,28 @@ class HomeViewModel : ViewModel() {
                 )
             )
             isLoading.value = false
-            this.home.value = home
+            home.value = dataHome
         }
     }
 
-    fun getHomeAnime() {
+    fun getHomeAnime() = viewModelScope.launch {
         isLoading.value = true
         AnimeServices().getHome {
-            this.isLoading.value = false
+
+            isLoading.value = false
             val onGoing = it.home?.onGoing
             val complete = it.home?.complete
 
-            val home = Home(
+            val dataHome = Home(
                 listOf(
                     ItemHome(ITEM_BANNER, complete as Any),
                     ItemHome(ITEM_TITLE, "On Going"),
-                    ItemHome(ITEM_DATA, onGoing as Any)
+                    ItemHome(ITEM_DATA, onGoing as Any),
+                    ItemHome(ITEM_TITLE, "Selesai"),
+                    ItemHome(ITEM_DATA, complete as Any)
                 )
             )
-            this.home.value = home
+            home.value = dataHome
         }
     }
 
@@ -87,7 +92,7 @@ class HomeViewModel : ViewModel() {
         return home
     }
 
-    fun loading(): LiveData<Boolean>{
+    fun loading(): LiveData<Boolean> {
         return isLoading
     }
 }

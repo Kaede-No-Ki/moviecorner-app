@@ -75,24 +75,17 @@ class HomeFragment : Fragment() {
 
     private fun initRecylerView() {
         val mode = HawkStore.getMode(requireContext())
-        if (mode == MODE_SERIES) {
-            binding.apply {
-                homeAdapter =
-                    RecyclerHomeSeriesAdapter(
-                        requireActivity()
-                    )
-                rvHome.adapter = homeAdapter as RecyclerHomeSeriesAdapter
-                rvHome.layoutManager = LinearLayoutManager(requireContext())
+        binding.apply {
+            homeAdapter = when (mode) {
+                MODE_SERIES -> RecyclerHomeSeriesAdapter(requireActivity())
+                MODE_ANIME -> RecyclerHomeAnimeAdapter(requireActivity())
+                else -> RecyclerHomeSeriesAdapter(requireActivity())
             }
-        } else if (mode == MODE_ANIME) {
-            binding.apply {
-                homeAdapter =
-                    RecyclerHomeAnimeAdapter(
-                        requireActivity()
-                    )
-                rvHome.adapter = homeAdapter as RecyclerHomeAnimeAdapter
-                rvHome.layoutManager = LinearLayoutManager(requireContext())
-            }
+
+            rvHome.adapter =
+                if (mode == MODE_SERIES) (homeAdapter as RecyclerHomeSeriesAdapter)
+                else (homeAdapter as RecyclerHomeAnimeAdapter)
+            rvHome.layoutManager = LinearLayoutManager(requireContext())
         }
     }
 
