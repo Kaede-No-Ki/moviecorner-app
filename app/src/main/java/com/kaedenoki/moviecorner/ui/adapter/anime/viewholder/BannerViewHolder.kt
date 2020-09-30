@@ -33,6 +33,7 @@ class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                     val itemData = data[position] as ItemAnime
                     binding.apply {
                         ivItemBanner.load(itemData.thumb)
+                        tvTitle.text = itemData.title
                     }
                 }
                 show()
