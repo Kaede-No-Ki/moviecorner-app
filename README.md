@@ -13,7 +13,7 @@
 
 | Home Anime | Home Movie|
 |--|--|
-| <img src="https://im3.ezgif.com/tmp/ezgif-3-0109e91cfcdd.gif"> | <img src="https://im3.ezgif.com/tmp/ezgif-3-92525d97a880.gif"> |
+| <img src="assets/anime.gif"> | <img src="assets/movie.gif"> |
 
 ## Features
 -  Choose Mode
