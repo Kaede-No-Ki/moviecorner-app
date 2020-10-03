@@ -2,6 +2,7 @@ package com.kaedenoki.moviecorner.repository.network.anime
 
 import com.kaedenoki.moviecorner.data.anime.response.BaseAnimeResponse
 import com.kaedenoki.moviecorner.data.anime.response.HomeAnimeResponse
+import com.kaedenoki.moviecorner.data.anime.response.ResponseDetailAnime
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -15,4 +16,10 @@ interface AnimeContract {
         @Path("num")
         page: Int?
     ): Call<BaseAnimeResponse>
+
+    @GET("anime/{id}")
+    fun getDetailAnime(
+        @Path("id")
+        id: String?
+    ): Call<ResponseDetailAnime>
 }
