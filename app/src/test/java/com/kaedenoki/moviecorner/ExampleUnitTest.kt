@@ -22,4 +22,12 @@ class ExampleUnitTest {
         val build = buildString { append(fix[0]).append(" E").append(fix[1]) }
         println(build)
     }
+
+    @Test
+    fun testParseEpisode(){
+        val text = "Black Clover Episode 145 Subtitle Indonesia"
+        val data = text.split("Episode ")
+        val episode = data[1].split(" ")
+        println(episode[0])
+    }
 }

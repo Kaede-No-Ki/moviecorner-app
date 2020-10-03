@@ -1,5 +1,7 @@
 package com.kaedenoki.moviecorner.ui.adapter.anime
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +13,12 @@ import com.kaedenoki.moviecorner.data.anime.model.ItemAnime
 import com.kaedenoki.moviecorner.databinding.ItemAnimeBinding
 import com.kaedenoki.moviecorner.helper.Helpers.formatEpisode
 import com.kaedenoki.moviecorner.helper.Helpers.hideView
+import com.kaedenoki.moviecorner.ui.activity.detail.DetailActivity
 
-class RecyclerItemAnime(val data: List<Any>) :
+class RecyclerItemAnime(
+    val context: Context,
+    val data: List<Any>
+) :
     RecyclerView.Adapter<RecyclerItemAnime.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
@@ -27,12 +33,12 @@ class RecyclerItemAnime(val data: List<Any>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemData = data[position] as ItemAnime
-        holder.bindView(itemData)
+        holder.bindView(context, itemData)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemAnimeBinding.bind(itemView)
-        fun bindView(itemAnime: ItemAnime) {
+        fun bindView(context: Context, itemAnime: ItemAnime) {
             binding.apply {
                 ivItemCard.load(itemAnime.thumb) {
                     crossfade(true)
@@ -55,6 +61,11 @@ class RecyclerItemAnime(val data: List<Any>) :
                         tvEpisode.text = textEpisode
                         layoutScore.hideView()
                     }
+                }
+                cardSeries.setOnClickListener {
+                    context.startActivity(Intent(context, DetailActivity::class.java).apply {
+                        putExtra(DetailActivity.EXTRA_ID, itemAnime.id)
+                    })
                 }
             }
         }
