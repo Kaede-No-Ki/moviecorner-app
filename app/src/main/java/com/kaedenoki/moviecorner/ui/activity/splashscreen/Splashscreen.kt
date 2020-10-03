@@ -14,8 +14,9 @@ class Splashscreen : AppCompatActivity() {
         binding = ActivitySplashscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Handler().postDelayed({
+        Handler(mainLooper).postDelayed({
             startActivity(Intent(this, ChooseModeActivity::class.java))
+            finish()
         },3000)
     }
 }
