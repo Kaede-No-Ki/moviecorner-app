@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 
 ext.majorVersion = 0
 ext.minorVersion = 1
-ext.patchVersion = 1
+ext.patchVersion = 2
 ext.preRelease = "alpha"
 ext.minSdkVersion = 21
 
