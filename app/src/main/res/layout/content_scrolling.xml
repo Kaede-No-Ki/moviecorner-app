@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nsvDetail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.activity.detail.DetailActivity"
+    tools:showIn="@layout/activity_detail">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bgBlack">
+
+        <ImageView
+            android:id="@+id/ivBackground"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="2:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_title_item_series"
+            android:backgroundTint="@color/bgBlack"
+            android:maxHeight="210dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivBackground" />
+
+        <ImageView
+            android:id="@+id/ivPoster"
+            android:layout_width="120dp"
+            android:layout_height="168dp"
+            android:layout_marginTop="150dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="24dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="@+id/ivPoster"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivPoster">
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/sl_bookmark"
+                android:buttonTint="@android:color/white"
+                android:gravity="center"
+                android:text="@null"
+                android:translationX="12dp" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/bold"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivPoster" />
+
+        <TextView
+            android:id="@+id/tvTitleJP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/regular"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/activeIndicatorBanner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            app:layout_constraintEnd_toStartOf="@+id/imageView4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleJP" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_star"
+            android:backgroundTint="@android:color/holo_orange_light"
+            app:layout_constraintEnd_toStartOf="@+id/tvRating"
+            app:layout_constraintStart_toEndOf="@+id/textView17"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleJP" />
+
+        <TextView
+            android:id="@+id/tvRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            app:layout_constraintEnd_toStartOf="@+id/textView15"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleJP" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" • "
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            app:layout_constraintEnd_toStartOf="@+id/tvDuration"
+            app:layout_constraintStart_toEndOf="@+id/tvRating"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleJP" />
+
+        <TextView
+            android:id="@+id/tvDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewStart"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            app:layout_constraintEnd_toStartOf="@+id/textView18"
+            app:layout_constraintStart_toEndOf="@+id/textView15"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleJP" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvDuration"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleJP" />
+
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView4">
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/tvType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_rounded"
+            android:backgroundTint="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_rounded"
+            android:backgroundTint="@android:color/holo_orange_light"
+            app:layout_constraintBottom_toBottomOf="@+id/tvType"
+            app:layout_constraintStart_toEndOf="@+id/tvType"
+            app:layout_constraintTop_toTopOf="@+id/tvType" />
+
+        <TextView
+            android:id="@+id/tvProducer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvType" />
+
+        <TextView
+            android:id="@+id/tvStudio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvProducer" />
+
+        <TextView
+            android:id="@+id/tvRelease"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvStudio" />
+
+        <TextView
+            android:id="@+id/tvTotalEps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRelease" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/bold"
+            android:text="Sinopsis"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTotalEps" />
+
+        <TextView
+            android:id="@+id/tvSinopsis"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="-"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/bold"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSinopsis" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

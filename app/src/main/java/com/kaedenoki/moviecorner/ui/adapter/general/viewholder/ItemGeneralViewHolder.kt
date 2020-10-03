@@ -15,16 +15,16 @@ class ItemGeneralViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
 
     private val binding = ViewholderItemgeneralBinding.bind(itemView)
 
-    fun bindView(activity: Activity, data: List<Any>, type : Int) {
+    fun bindView(activity: Activity, data: List<Any>, type: Int) {
         binding.apply {
             val mode = HawkStore.getMode(activity)
             val adapter = if (mode == Const.MODE_SERIES) {
                 RecyclerItemSeries(data)
-            }else {
-                RecyclerItemAnime(data)
+            } else {
+                RecyclerItemAnime(activity, data)
             }
             val layoutType =
-                if (type == 1)  LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+                if (type == 1) LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
                 else GridLayoutManager(activity, 3)
             rvItemData.layoutManager = layoutType
             rvItemData.adapter = adapter

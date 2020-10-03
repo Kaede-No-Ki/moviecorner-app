@@ -3,6 +3,7 @@
     package="com.kaedenoki.moviecorner">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,15 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.kaedenoki.moviecorner.ui.activity.choosemode.ChooseModeActivity"></activity>
-        <activity android:name="com.kaedenoki.moviecorner.ui.activity.splashscreen.Splashscreen">
+        <activity android:name=".ui.activity.detail.DetailActivity"
+            android:theme="@style/AppTheme.BottomSheet.Themed"/>
+        <activity android:name=".ui.activity.choosemode.ChooseModeActivity" />
+        <activity android:name=".ui.activity.splashscreen.Splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.kaedenoki.moviecorner.ui.activity.main.MainActivity"></activity>
+        <activity android:name=".ui.activity.main.MainActivity" />
     </application>
 
 </manifest>
