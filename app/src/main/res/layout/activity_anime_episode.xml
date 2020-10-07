@@ -6,27 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.episode.AnimeEpisodeActivity">
 
-
-    <androidx.cardview.widget.CardView
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/videoView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:cardCornerRadius="8dp"
-        app:cardUseCompatPadding="true"
+        android:layout_height="0dp"
+        android:background="@android:color/black"
+        app:controller_layout_id="@layout/layout_playback_control_view"
+        app:fastforward_increment="10000"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintDimensionRatio="16:9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.exoplayer2.ui.PlayerView
-            android:id="@+id/videoView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:controller_layout_id="@layout/layout_playback_control_view"
-            app:fastforward_increment="10000"
-            app:rewind_increment="10000" />
-
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="parent"
+        app:rewind_increment="10000" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

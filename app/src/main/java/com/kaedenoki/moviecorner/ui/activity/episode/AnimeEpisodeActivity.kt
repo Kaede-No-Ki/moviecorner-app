@@ -1,19 +1,26 @@
 package com.kaedenoki.moviecorner.ui.activity.episode
 
+import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import coil.load
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.kaedenoki.moviecorner.R
 import com.kaedenoki.moviecorner.databinding.ActivityAnimeEpisodeBinding
+import kotlinx.android.synthetic.main.layout_playback_control_view.view.*
 
 
 class AnimeEpisodeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAnimeEpisodeBinding
+    private var isFullscreen = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,12 +28,47 @@ class AnimeEpisodeActivity : AppCompatActivity() {
         setContentView(binding.root)
         val mediaSourceFactory = buildMediaSource()
 
-        val player = SimpleExoPlayer.Builder(this).build()
-        player.apply {
+        val exoPlayer = SimpleExoPlayer.Builder(this).build()
+        exoPlayer.apply {
             prepare(mediaSourceFactory)
             playWhenReady = false
         }
-        binding.videoView.player = player
+        binding.videoView.apply {
+            player = exoPlayer
+            val btnFullScreen = this.exo_fullscreen_icon
+            this.exo_fullscreen_button.setOnClickListener {
+                if (isFullscreen) {
+                    btnFullScreen.load(R.drawable.exo_controls_fullscreen_enter)
+
+                    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+                    if (supportActionBar != null) {
+                        supportActionBar?.show()
+                    }
+
+                    requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                    val params = this.layoutParams
+                    params.width = ViewGroup.LayoutParams.MATCH_PARENT
+                    params.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                    this.layoutParams = params
+                    isFullscreen = false
+                } else {
+                    btnFullScreen.load(R.drawable.exo_controls_fullscreen_exit)
+                    window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN
+                            or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
+                    if (supportActionBar != null) {
+                        supportActionBar?.hide()
+                    }
+
+                    requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                    val params = this.layoutParams
+                    params.width = ViewGroup.LayoutParams.MATCH_PARENT
+                    params.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                    this.layoutParams = params
+                    isFullscreen = true
+                }
+            }
+        }
 
     }
 
