@@ -1,6 +1,7 @@
 package com.kaedenoki.moviecorner.ui.adapter.anime.episode
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,13 +10,15 @@ import com.kaedenoki.moviecorner.R
 import com.kaedenoki.moviecorner.data.anime.model.ItemEpisodeAnime
 import com.kaedenoki.moviecorner.databinding.ItemEpisodeAnimeBinding
 import com.kaedenoki.moviecorner.helper.Helpers.getNumEpisode
+import com.kaedenoki.moviecorner.ui.activity.episode.AnimeEpisodeActivity
 
 class AnimeEpisodeAdapter(
     val context: Context,
     val episode: List<ItemEpisodeAnime?>?
 ) : RecyclerView.Adapter<AnimeEpisodeAdapter.AnimeEpisodeViewHolder>() {
     class AnimeEpisodeViewHolder(view: View) : RecyclerView.ViewHolder(view)
-    private lateinit var binding : ItemEpisodeAnimeBinding
+
+    private lateinit var binding: ItemEpisodeAnimeBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimeEpisodeViewHolder {
         val view =
@@ -25,7 +28,12 @@ class AnimeEpisodeAdapter(
     }
 
     override fun onBindViewHolder(holder: AnimeEpisodeViewHolder, position: Int) {
-        binding.tvEpisode.text = episode?.get(position)?.title!!.getNumEpisode()
+        binding.tvEpisode.apply {
+            text = episode?.get(position)?.title!!.getNumEpisode()
+            setOnClickListener {
+                context.startActivity(Intent(context, AnimeEpisodeActivity::class.java))
+            }
+        }
     }
 
     override fun getItemCount(): Int = episode!!.size
