@@ -31,7 +31,8 @@ class AnimeEpisodeAdapter(
         binding.tvEpisode.apply {
             text = episode?.get(position)?.title!!.getNumEpisode()
             setOnClickListener {
-                context.startActivity(Intent(context, AnimeEpisodeActivity::class.java))
+                context.startActivity(Intent(context, AnimeEpisodeActivity::class.java)
+                    .apply { putExtra(AnimeEpisodeActivity.EXTRA_ID, episode[position]?.id) })
             }
         }
     }

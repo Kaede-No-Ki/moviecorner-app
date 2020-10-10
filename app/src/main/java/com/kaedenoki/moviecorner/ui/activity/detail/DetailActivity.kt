@@ -97,6 +97,8 @@ class DetailActivity : AppCompatActivity() {
                 tvTotalEps.text =
                     buildString { append("Total Episode: ").append(it.totalEpisode ?: "-") }
 
+                tvSinopsis.text = it.synopsis
+
                 episodeAdapter = AnimeEpisodeAdapter(this@DetailActivity, it.episodeList)
             }
         }
