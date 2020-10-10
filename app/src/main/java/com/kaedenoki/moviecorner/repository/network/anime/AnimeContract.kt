@@ -1,5 +1,6 @@
 package com.kaedenoki.moviecorner.repository.network.anime
 
+import com.kaedenoki.moviecorner.data.anime.response.AnimeEpisodeResponse
 import com.kaedenoki.moviecorner.data.anime.response.BaseAnimeResponse
 import com.kaedenoki.moviecorner.data.anime.response.HomeAnimeResponse
 import com.kaedenoki.moviecorner.data.anime.response.ResponseDetailAnime
@@ -22,4 +23,10 @@ interface AnimeContract {
         @Path("id")
         id: String?
     ): Call<ResponseDetailAnime>
+
+    @GET("eps/{id}")
+    fun getEpisodeAnime(
+        @Path("id")
+        id: String?
+    ): Call<AnimeEpisodeResponse>
 }
