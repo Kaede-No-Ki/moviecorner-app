@@ -19,4 +19,35 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+    <style name="CustomExoMediaButtonH">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+    </style>
+
+    <style name="CustomExoMediaButtonM">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
+    </style>
+
+    <style name="CustomExoMediaButtonH.Play">
+        <item name="android:src">@drawable/exo_controls_play</item>
+    </style>
+
+    <style name="CustomExoMediaButtonH.Pause">
+        <item name="android:src">@drawable/exo_controls_pause</item>
+    </style>
+
+    <style name="CustomExoMediaButtonM.Rew">
+        <item name="android:src">@drawable/ic_round_replay_10_24</item>
+    </style>
+
+    <style name="CustomExoMediaButtonM.Fwd">
+        <item name="android:src">@drawable/ic_round_forward_10_24</item>
+    </style>
+
 </resources>

@@ -11,8 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.detail.DetailActivity"
-            android:theme="@style/AppTheme.BottomSheet.Themed"/>
+        <activity
+            android:name=".ui.activity.episode.AnimeEpisodeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name=".ui.activity.detail.DetailActivity"
+            android:theme="@style/AppTheme.BottomSheet.Themed" />
         <activity android:name=".ui.activity.choosemode.ChooseModeActivity" />
         <activity android:name=".ui.activity.splashscreen.Splashscreen">
             <intent-filter>

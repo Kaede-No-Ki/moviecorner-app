@@ -17,6 +17,9 @@ data class ResponseDetailAnime(
 	@field:SerializedName("title")
 	val title: String? = null,
 
+	@field:SerializedName("synopsis")
+	val synopsis: String? = null,
+
 	@field:SerializedName("type")
 	val type: String? = null,
 

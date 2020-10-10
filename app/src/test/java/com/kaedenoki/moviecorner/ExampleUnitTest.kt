@@ -30,4 +30,11 @@ class ExampleUnitTest {
         val episode = data[1].split(" ")
         println(episode[0])
     }
+
+    @Test
+    fun testTitleEpisode(){
+        val text = "Black Clover Episode 146 Subtitle Indonesia"
+        val data = text.split(" Episode ")
+        println("${data[0]} , Episode ${data[1].split(" ")[0]}")
+    }
 }

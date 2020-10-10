@@ -1,6 +1,7 @@
 package com.kaedenoki.moviecorner.repository.network.anime
 
 import android.util.Log
+import com.kaedenoki.moviecorner.data.anime.response.AnimeEpisodeResponse
 import com.kaedenoki.moviecorner.data.anime.response.BaseAnimeResponse
 import com.kaedenoki.moviecorner.data.anime.response.HomeAnimeResponse
 import com.kaedenoki.moviecorner.data.anime.response.ResponseDetailAnime
@@ -59,6 +60,23 @@ class AnimeServices {
                 }
 
                 override fun onFailure(call: Call<ResponseDetailAnime>, t: Throwable) {
+                    Log.d("TAG", "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
+
+    fun getEpisodeAnime(id: String?, callback: (AnimeEpisodeResponse) -> Unit){
+        RetrofitInstance.getAnimeClient().getEpisodeAnime(id).enqueue(
+            object : Callback<AnimeEpisodeResponse> {
+                override fun onResponse(
+                    call: Call<AnimeEpisodeResponse>,
+                    response: Response<AnimeEpisodeResponse>
+                ) {
+                    callback(response.body()!!)
+                }
+
+                override fun onFailure(call: Call<AnimeEpisodeResponse>, t: Throwable) {
                     Log.d("TAG", "onFailure: ${t.message}")
                 }
             }

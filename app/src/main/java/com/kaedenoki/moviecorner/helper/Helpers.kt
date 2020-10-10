@@ -1,13 +1,14 @@
 package com.kaedenoki.moviecorner.helper
 
 import android.view.View
+import com.kaedenoki.moviecorner.helper.Helpers.getTitleEpisode
 
 object Helpers {
-    fun View.hideView(){
+    fun View.hideView() {
         this.visibility = View.GONE
     }
 
-    fun View.showView(){
+    fun View.showView() {
         this.visibility = View.VISIBLE
     }
 
@@ -38,5 +39,20 @@ object Helpers {
         val data = this.split("Episode ")
         val episode = data[1].split(" ")
         return episode[0]
+    }
+
+    val imgMode = listOf(
+        "https://images2.alphacoders.com/742/thumb-1920-742320.png",
+        "https://assets.st-note.com/production/uploads/images/25980292/picture_pc_1d466b6781c87b2fd537736dc38775f4.jpg"
+    )
+
+    fun String.getTitleEpisode(): String {
+        val data = this.split(" Episode ")
+        return data[0]
+    }
+
+    fun String.getTextEpisode(): String {
+        val data = this.split(" Episode ")
+        return "Episode ${data[1].split(" ")[0]}"
     }
 }
