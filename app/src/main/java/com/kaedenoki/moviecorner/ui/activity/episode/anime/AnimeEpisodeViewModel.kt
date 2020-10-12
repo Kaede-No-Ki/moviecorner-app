@@ -1,4 +1,4 @@
-package com.kaedenoki.moviecorner.ui.activity.episode
+package com.kaedenoki.moviecorner.ui.activity.episode.anime
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

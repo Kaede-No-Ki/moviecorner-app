@@ -10,7 +10,7 @@ import com.kaedenoki.moviecorner.R
 import com.kaedenoki.moviecorner.data.anime.model.ItemEpisodeAnime
 import com.kaedenoki.moviecorner.databinding.ItemEpisodeAnimeBinding
 import com.kaedenoki.moviecorner.helper.Helpers.getNumEpisode
-import com.kaedenoki.moviecorner.ui.activity.episode.AnimeEpisodeActivity
+import com.kaedenoki.moviecorner.ui.activity.episode.anime.AnimeEpisodeActivity
 
 class AnimeEpisodeAdapter(
     val context: Context,
