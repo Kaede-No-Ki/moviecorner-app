@@ -19,7 +19,7 @@ class ItemGeneralViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
         binding.apply {
             val mode = HawkStore.getMode(activity)
             val adapter = if (mode == Const.MODE_SERIES) {
-                RecyclerItemSeries(data)
+                RecyclerItemSeries(data, activity)
             } else {
                 RecyclerItemAnime(activity, data)
             }

@@ -1,4 +1,4 @@
-package com.kaedenoki.moviecorner.ui.activity.episode
+package com.kaedenoki.moviecorner.ui.activity.episode.anime
 
 import android.content.pm.ActivityInfo
 import android.net.Uri
