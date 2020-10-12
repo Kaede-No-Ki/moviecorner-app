@@ -1,6 +1,7 @@
 package com.kaedenoki.moviecorner.ui.adapter.series.viewholder
 
 import android.app.Activity
+import android.content.Intent
 import android.util.DisplayMetrics
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -12,6 +13,7 @@ import com.kaedenoki.moviecorner.R
 import com.kaedenoki.moviecorner.data.series.model.ItemSeries
 import com.kaedenoki.moviecorner.databinding.ItemBannerSeriesBinding
 import com.kaedenoki.moviecorner.databinding.ViewholderCarouselBinding
+import com.kaedenoki.moviecorner.ui.activity.detail.DetailActivity
 
 class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private var binding = ViewholderCarouselBinding.bind(itemView)
@@ -24,7 +26,7 @@ class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 size = data.size
                 enableSnapping(true)
                 resource = R.layout.item_banner_series
-                autoPlay = true
+                autoPlay = false
                 scaleOnScroll = true
                 spacing = 0
                 hideIndicator(false)
@@ -39,6 +41,12 @@ class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                         cvItemBanner.layoutParams.width = width - 128
                         ivItemBanner.load(itemData.banner)
                         tvItemTitle.text = itemData.title
+                        cvItemBanner.setOnClickListener {
+                            context.startActivity(Intent(context, DetailActivity::class.java).apply {
+                                putExtra(DetailActivity.EXTRA_ID, itemData.id)
+                            })
+                        }
+
                     }
                 }
                 show()

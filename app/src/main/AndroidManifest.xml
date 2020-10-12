@@ -6,13 +6,18 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.activity.episode.AnimeEpisodeActivity"
+            android:name=".ui.activity.episode.series.SeriesEpisodeActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".ui.activity.episode.anime.AnimeEpisodeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".ui.activity.detail.DetailActivity"

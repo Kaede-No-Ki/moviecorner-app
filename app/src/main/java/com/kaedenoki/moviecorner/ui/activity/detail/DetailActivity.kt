@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -15,18 +17,23 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.chip.Chip
 import com.kaedenoki.moviecorner.R
 import com.kaedenoki.moviecorner.data.anime.response.ResponseDetailAnime
+import com.kaedenoki.moviecorner.data.series.response.DetailSeries
 import com.kaedenoki.moviecorner.databinding.ActivityDetailBinding
 import com.kaedenoki.moviecorner.databinding.ContentScrollingBinding
 import com.kaedenoki.moviecorner.databinding.LayoutEpisodeAnimeBinding
+import com.kaedenoki.moviecorner.helper.Const.MODE_ANIME
 import com.kaedenoki.moviecorner.helper.Helpers.getAlphaForActionBar
+import com.kaedenoki.moviecorner.repository.local.HawkStore
 import com.kaedenoki.moviecorner.ui.adapter.anime.episode.AnimeEpisodeAdapter
+import com.kaedenoki.moviecorner.ui.adapter.series.episode.WrapperEpisodeSeriesAdapter
 
 
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
     private lateinit var contentBinding: ContentScrollingBinding
-    private lateinit var episodeAdapter: AnimeEpisodeAdapter
+    private lateinit var episodeAnimeAdapter: AnimeEpisodeAdapter
+    private lateinit var episodeSeriesAdapter: WrapperEpisodeSeriesAdapter
     private val model: DetailAnimeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,11 +50,18 @@ class DetailActivity : AppCompatActivity() {
         cd.alpha = 0
 
         val id = intent.getStringExtra(EXTRA_ID)
-        model.initData(id!!)
 
-        model.getAnime().observe(this, Observer { anime ->
-            applyDataAnime(anime)
-        })
+        model.initData(id!!, HawkStore.getMode(this))
+        if (HawkStore.getMode(this) == MODE_ANIME) {
+            model.getAnime().observe(this, Observer { anime ->
+                applyDataAnime(anime)
+            })
+        } else {
+            model.getSeries().observe(this, Observer {
+                applyDataSeries(it)
+            })
+        }
+
 
         contentBinding.apply {
             nsvDetail
@@ -67,9 +81,50 @@ class DetailActivity : AppCompatActivity() {
                     expandedOffset = binding.toolbar.height
                 }
             dialogBinding.rvEpisode.apply {
-                adapter = episodeAdapter
+                if (HawkStore.getMode(this@DetailActivity) == MODE_ANIME) {
+                    adapter = episodeAnimeAdapter
+                    layoutManager = GridLayoutManager(this@DetailActivity,4)
+
+                } else {
+                    adapter = episodeSeriesAdapter
+                    layoutManager = LinearLayoutManager(this@DetailActivity)
+                }
+
             }
             dialog.show()
+        }
+    }
+
+    private fun applyDataSeries(series: DetailSeries?) {
+        contentBinding.apply {
+            series.let {
+                supportActionBar?.title = it?.data?.title
+                ivBackground.load(it?.data?.banner) { crossfade(true) }
+                ivPoster.load(it?.data?.thumbnail) {
+                    crossfade(true)
+                    transformations(RoundedCornersTransformation(8f))
+                }
+                tvTitle.text = it?.data?.title
+                tvTitleJP.text = it?.data?.descriptions?.country
+
+                tvRating.text = "${it?.data?.descriptions?.tmdb}/10"
+                tvDuration.text = it?.data?.descriptions?.duration
+                it?.data?.descriptions?.genre?.split(",")?.forEach {
+                    chipGroup.addView(Chip(chipGroup.context).apply { text = it })
+                }
+
+                it?.data?.descriptions?.views?.let { release ->
+                    tvType.text = "$release views"
+                }
+                tvStatus.text = it?.data?.descriptions?.tvstatus
+                tvProducer.text = "Director : ${it?.data?.descriptions?.director}"
+                tvStudio.text = "Studio : ${it?.data?.descriptions?.studio}"
+                tvRelease.text = "Actors : ${it?.data?.descriptions?.actors}"
+                tvTotalEps.text = "Release : ${it?.data?.descriptions?.release}"
+
+                episodeSeriesAdapter =
+                    WrapperEpisodeSeriesAdapter(this@DetailActivity, it?.data?.episodes!!)
+            }
         }
     }
 
@@ -99,7 +154,7 @@ class DetailActivity : AppCompatActivity() {
 
                 tvSinopsis.text = it.synopsis
 
-                episodeAdapter = AnimeEpisodeAdapter(this@DetailActivity, it.episodeList)
+                episodeAnimeAdapter = AnimeEpisodeAdapter(this@DetailActivity, it.episodeList)
             }
         }
     }

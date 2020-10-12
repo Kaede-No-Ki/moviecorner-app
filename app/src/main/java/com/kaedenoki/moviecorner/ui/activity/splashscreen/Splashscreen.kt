@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.kaedenoki.moviecorner.databinding.ActivitySplashscreenBinding
+import com.kaedenoki.moviecorner.repository.network.series.SeriesServices
 import com.kaedenoki.moviecorner.ui.activity.choosemode.ChooseModeActivity
 
 class Splashscreen : AppCompatActivity() {
@@ -14,9 +15,12 @@ class Splashscreen : AppCompatActivity() {
         binding = ActivitySplashscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Handler(mainLooper).postDelayed({
-            startActivity(Intent(this, ChooseModeActivity::class.java))
-            finish()
-        },3000)
+        SeriesServices().ping {
+            Handler(mainLooper).postDelayed({
+                startActivity(Intent(this, ChooseModeActivity::class.java))
+                finish()
+            },2000)
+        }
+
     }
 }
