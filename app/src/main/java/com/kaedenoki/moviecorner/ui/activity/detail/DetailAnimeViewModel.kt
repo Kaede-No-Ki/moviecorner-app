@@ -1,5 +1,6 @@
 package com.kaedenoki.moviecorner.ui.activity.detail
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +14,7 @@ class DetailAnimeViewModel : ViewModel() {
 
     val anime = MutableLiveData<ResponseDetailAnime>()
     val series = MutableLiveData<DetailSeries>()
+    val errorLoad = MutableLiveData<String>()
 
     fun getAnime(): LiveData<ResponseDetailAnime> {
         return anime
@@ -22,6 +24,10 @@ class DetailAnimeViewModel : ViewModel() {
         return series
     }
 
+    fun getErrorLoad(): LiveData<String>{
+        return errorLoad
+    }
+
     fun initData(id: String, mode: String) {
         if (mode == MODE_ANIME){
             AnimeServices().getDetailAnime(id) {
@@ -29,7 +35,12 @@ class DetailAnimeViewModel : ViewModel() {
             }
         } else {
             SeriesServices().getDetailSeries(id){
-                series.value = it
+                Log.d("TAG", "initData: $it")
+                if(!it.status){
+                    errorLoad.value = "Gagal Memuat Data"
+                } else {
+                    series.value = it
+                }
             }
         }
 

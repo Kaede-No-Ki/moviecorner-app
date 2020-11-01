@@ -3,6 +3,7 @@ package com.kaedenoki.moviecorner.ui.activity.detail
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -61,6 +62,11 @@ class DetailActivity : AppCompatActivity() {
                 applyDataSeries(it)
             })
         }
+
+        model.getErrorLoad().observe(this, Observer {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            finish()
+        })
 
 
         contentBinding.apply {

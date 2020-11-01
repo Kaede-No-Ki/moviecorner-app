@@ -22,6 +22,7 @@ class SeriesServices {
                 override fun onFailure(call: Call<Ping>, t: Throwable) {
                     callback(Ping())
                 }
+
             }
         )
     }
